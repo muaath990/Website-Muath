@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunity Board - FTN Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-trello"></i> Opportunity Board</h2>
+            </div>
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Search opportunities..." class="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="board-header">
+            <div class="container">
+                <h1>Opportunity Management</h1>
+                <p>Track your job opportunities through different stages</p>
+                <button class="btn btn-primary" onclick="openAddModal()">
+                    <i class="fas fa-plus"></i> Add Opportunity
+                </button>
+            </div>
+        </section>
+
+        <section class="kanban-board">
+            <div class="container">
+                <div class="board-columns">
+                    <!-- Saved Column -->
+                    <div class="column" data-status="saved">
+                        <div class="column-header saved">
+                            <h3><i class="fas fa-bookmark"></i> Saved</h3>
+                            <span class="count" id="savedCount">0</span>
+                        </div>
+                        <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <div class="opportunities" id="savedOpportunities"></div>
+                        </div>
+                    </div>
+
+                    <!-- Applied Column -->
+                    <div class="column" data-status="applied">
+                        <div class="column-header applied">
+                            <h3><i class="fas fa-paper-plane"></i> Applied</h3>
+                            <span class="count" id="appliedCount">0</span>
+                        </div>
+                        <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <div class="opportunities" id="appliedOpportunities"></div>
+                        </div>
+                    </div>
+
+                    <!-- Interview Column -->
+                    <div class="column" data-status="interview">
+                        <div class="column-header interview">
+                            <h3><i class="fas fa-handshake"></i> Interview</h3>
+                            <span class="count" id="interviewCount">0</span>
+                        </div>
+                        <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <div class="opportunities" id="interviewOpportunities"></div>
+                        </div>
+                    </div>
+
+                    <!-- Offer Column -->
+                    <div class="column" data-status="offer">
+                        <div class="column-header offer">
+                            <h3><i class="fas fa-gift"></i> Offer</h3>
+                            <span class="count" id="offerCount">0</span>
+                        </div>
+                        <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <div class="opportunities" id="offerOpportunities"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Opportunity Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Opportunity</h2>
+                <span class="close" onclick="closeAddModal()">&times;</span>
+            </div>
+            <form id="addOpportunityForm">
+                <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" id="title" name="title" required placeholder="e.g., Senior Developer">
+                </div>
+                <div class="form-group">
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required placeholder="e.g., Tech Corp">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Opportunity</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
